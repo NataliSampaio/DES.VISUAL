@@ -103,32 +103,62 @@ namespace Hello
             double media = soma / numeros.Length;
             return media;
         }
-         static double CalculaMediana(double[] numeros)
+        static double CalculaMediana(double[] numeros)
         {
-            
+
             Array.Sort(numeros);
             //pega o numero do meio 
-            
 
-            if(numeros.Length%2==0){
+
+            if (numeros.Length % 2 == 0)
+            {
                 //soma os numeros do meio e faz a media 
-                int m=numeros.Length/2;
-                double m1=numeros[m];
-                 double m2=numeros[m+1];
-                 double[]mediamed={m1,m2};
-                   return CalculaMedia(mediamed);
-                    
-              
+                int m = numeros.Length / 2;
+                double m1 = numeros[m];
+                double m2 = numeros[m + 1];
+                double[] mediamed = { m1, m2 };
+                return CalculaMedia(mediamed);
 
-                 
 
-               
-            }else{
-                int metade=Convert.ToInt32((numeros.Length/2)-0.5);
-               return numeros[metade];
+
+
 
 
             }
+            else
+            {
+                int metade = Convert.ToInt32((numeros.Length / 2) - 0.5);
+                return numeros[metade];
+
+
+            }
+        }
+        static double CalculaModa(double[] numeros)
+        {
+            double[] repeticoes = new double[numeros.Length];
+
+            for (int i = 0; i < numeros.Length; i++)
+            {
+                repeticoes[i] = 0;
+                for (int j = 0; j < numeros.Length; j++)
+
+                {
+                    if (numeros[i] == numeros[j])
+                    {
+                        repeticoes[i]++;
+
+                    }
+                }
+            }
+            int maior = 0;
+            for (int i = 0; i < numeros.Length; i++)
+            {
+                if (repeticoes[i] > repeticoes[maior])
+                {
+                    maior = i;
+                }
+            }
+            return numeros[maior];
         }
         static void Main(string[] args)
 
@@ -149,6 +179,8 @@ namespace Hello
             Console.WriteLine(CalculaMedia(x));
             Console.WriteLine(("A MEDIANA É:"));
             Console.WriteLine(CalculaMediana(x));
+            Console.WriteLine(("A MODA É:"));
+            Console.WriteLine(CalculaModa(x));
 
 
 
